@@ -1,71 +1,188 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
 
-    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script src="jquery.dad.min.js"></script>
+
+    <script src="script.js?v=1" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="style.css?v=1" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Average&family=Cinzel+Decorative:wght@400;700&family=Inika&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      AFRAME.registerComponent("foo", {
+        init: function () {
+          var sceneEl = document.querySelector("a-scene");
+          var el = sceneEl.querySelector("#imageA");
+          var boton = document.querySelector("#boton1");
+
+          console.log(boton);
+
+          el.setAttribute("animation__001", {
+            property: "position",
+            to: { x: 1, y: 1, z: 1 },
+            dur: 1500,
+            easing: "easeInOutElastic",
+            startEvents: "startanim001",
+          });
+
+          boton.addEventListener("click", function () {
+            el.emit(`startanim001`, null, false);
+            console.log("boton apretado");
+          });
+        },
+      });
+    </script>
+
+    <script src="gesture-detector.js"></script>
+    <script src="gesture-handler.js"></script>
   </head>
 
-  <body style="margin: 0px; overflow: hidden">
-    <div id="marco" class="marco-1">
+  <body style="margin: 0px">
+    <div class="contenedor-web">
+      <div class="titulo-1">
+        <div>
+          <h1 id="tit1" class="subtitulo-1 anim-1">En</h1>
+        </div>
+
+        <div>
+          <h1 id="contador" class="subtitulo-1 anim-1-1"></h1>
+        </div>
+
+        <div>
+          <h1 id="tit2" class="subtitulo-1 anim-1-2">Se abre el telón</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="contenedor-ar">
+      <button id="boton2" class="hide" onclick="addScene()">
+        <p>Activar cámara</p>
+      </button>
+
+      <button id="boton3" class="hide" onclick="openMap(1)">
+        <img
+          id="mapa-icon"
+          src="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/Mapa-icono.png?v=1697741650446"
+          alt=""
+        />
+      </button>
+
+      <div id="myEmbeddedScene">
+        <!--<iframe src="arjs_scene.html" width="100%" height="100%"></iframe> -->
+      </div>
+
+      <div id="marco" class="marco-1">
+        <!--
+        <button id="boton3" class="hide" onclick="openMap(1)">
+          <img
+            id="mapa-icon"
+            src="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/Mapa-icono.png?v=1697741650446"
+            alt=""
+          />
+        </button>
+        -->
+
+        <div id="map" class="mapa">
+          <img
+            id="mapa-img"
+            src="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/Mapa-blanco.png?v=1697735653513"
+            alt=""
+          />
+
+          <!-- Bolas/puntos van contados desde arriba-derecha hacia abajo-izquierda -->
+
+          <img
+            id="punto-1"
+            class="bola"
+            src="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/Bolita-especific%2Btext-comp-1.webp?v=1698313403574"
+            alt=""
+          />
+
+          <img
+            id="punto-2"
+            class="bola"
+            src="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/Bolita-especific%2Btext-2.png?v=1698313606452"
+            alt=""
+          />
+
+          <img
+            id="punto-3"
+            class="bola"
+            src="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/Bolita-especific%2Btext-3.png?v=1698313607147"
+            alt=""
+          />
+
+          <img
+            id="punto-4"
+            class="bola"
+            src="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/Bolita-especific%2Btext-4.png?v=1698313607885"
+            alt=""
+          />
+        </div>
+
+        <img
+          id="marco-img"
+          src="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/Marco%20Leones-5.png?v=1697776987416"
+          alt=""
+        />
+      </div>
+
       <img
-        id="marco1"
-        src="https://cdn.glitch.global/f6d0b819-ec3d-4732-942d-a89d100e9eb4/MarcoLeones2.png?v=1694518703369"
-        alt=""
+        id="icon1"
+        class="show"
+        src="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/icon1-png.png?v=1697020765409"
+        alt="candado"
       />
     </div>
 
-    <div id="cont-AR">
-      <a-scene
-        embedded
-        arjs="sourceType: webcam;"
-        fog="type: linear; color: #AAA"
-        renderer="logarithmicDepthBuffer: true;"
-        vr-mode-ui="enabled: false"
-      >
-        <a-marker
-          type="pattern"
-          url="https://cdn.glitch.global/f6d0b819-ec3d-4732-942d-a89d100e9eb4/Leon-negro.patt?v=1697732974205"
-        >
-          <a-image
-            scale="2 2 1"
-            rotation="-90 0 0"
-            src="https://cdn.glitch.global/f6d0b819-ec3d-4732-942d-a89d100e9eb4/Screenshot_7.png?v=1693784716244"
-          ></a-image>
-        </a-marker>
-
-        <a-marker
-          type="pattern"
-          url="https://cdn.glitch.global/f6d0b819-ec3d-4732-942d-a89d100e9eb4/pattern-Verde.patt?v=1697733501029"
-        >
-          <a-image
-            scale="2 2 1"
-            rotation="-90 0 0"
-            src="https://cdn.glitch.global/f6d0b819-ec3d-4732-942d-a89d100e9eb4/db52844d0de9babf636ae21f3c0bb48a.jpg?v=1693787985086"
-          ></a-image>
-        </a-marker>
-
-        <a-marker
-          type="pattern"
-          url="https://cdn.glitch.global/f6d0b819-ec3d-4732-942d-a89d100e9eb4/pattern-Verde-2.patt?v=1697733501468"
-        >
-          <a-image
-            scale="0.5 0.5 1"
-            rotation="-90 0 0"
-            src="https://cdn.glitch.global/f6d0b819-ec3d-4732-942d-a89d100e9eb4/Screenshot_6.png?v=1693786765038"
-          ></a-image>
-        </a-marker>
-
-        <!-- add a simple camera -->
-        <a-entity camera></a-entity>
-      </a-scene>
+    <div class="contenedor-web">
+      <div class="titulo-2">
+        <!--   <span class="redacted"></span>  -->
+        <div>
+          <h1 id="lore-1" class="subtitulo-2 redacted-2">
+            En la <span class="redacted"> cripta debajo de la</span>piedra
+            fundacional de La Plata,<span class="redacted">
+              se depositaron
+            </span>
+            documentos
+            <span class="redacted">
+              en los que se explicaba la historia de una
+            </span>
+            piedra mística,
+            <span class="redacted">
+              que más adelante se descubre que emite una
+            </span>
+            radiación específica
+            <span class="redacted">
+              que afecta a la materia de otras dimensiones y las
+            </span>
+            inhibe.
+          </h1>
+        </div>
+      </div>
     </div>
   </body>
 </html>
