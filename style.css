@@ -201,7 +201,7 @@
   
     width: 100% !important;
   
-    height: fit-content !important;
+    height: auto !important;
   
     background: linear-gradient(#070707, 90%, #442d00);
   }
