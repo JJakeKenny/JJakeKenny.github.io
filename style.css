@@ -195,17 +195,13 @@
   
     font-size: 3.5vw;
   }
-
-  html{
-    min-width:fit-content;
-  }
   
   body {
     margin: 0px 0px 180px 0px !important;
   
     width: 100% !important;
   
-    height: auto !important;
+    min-height: 100vh;
   
     background: linear-gradient(#070707, 90%, #442d00);
   }
