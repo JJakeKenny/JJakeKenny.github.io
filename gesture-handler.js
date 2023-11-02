@@ -21,7 +21,7 @@ AFRAME.registerComponent("gesture-handler", {
     
     const glitch = $("#glitch"); 
     
-    var entidad1 = document.querySelector('[sound]');
+    //var entidad1 = document.querySelector('[sound]');
     
     this.handleScale = this.handleScale.bind(this);
     this.handleRotation = this.handleRotation.bind(this);
@@ -41,7 +41,7 @@ AFRAME.registerComponent("gesture-handler", {
       
       glitch.addClass("show")
       
-      entidad1.components.sound.playSound();
+      //entidad1.components.sound.playSound();
       
       elemento.addClass("hide")
       elemento2.addClass("show")
@@ -59,7 +59,7 @@ AFRAME.registerComponent("gesture-handler", {
       
       glitch.removeClass("show")
       
-      entidad1.components.sound.stopSound();
+      //entidad1.components.sound.stopSound();
       
       elemento.addClass("show")
       elemento2.addClass("hide")

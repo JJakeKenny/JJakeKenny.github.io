@@ -21,7 +21,18 @@
       name="viewport"
       content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
-    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://cdn.glitch.global/7578761b-14e7-4f95-9267-118d39ae8cca/favicon-32x32.png?v=1698931100111"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://cdn.glitch.global/7578761b-14e7-4f95-9267-118d39ae8cca/favicon-16x16.png?v=1698931099658"
+    />
 
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
@@ -31,9 +42,9 @@
 
     <script src="jquery.dad.min.js"></script>
 
-    <link rel="stylesheet" href="style-ar.css?v=1" />
+    <link rel="stylesheet" href="style-ar.css?v=2" />
 
-    <script src="script-ar.js?v=1" type="text/javascript"></script>
+    <script src="script-ar.js?v=2" type="text/javascript"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -44,8 +55,8 @@
       rel="stylesheet"
     />
 
-    <script src="gesture-detector.js?v=1"></script>
-    <script src="gesture-handler.js?v=1"></script>
+    <script src="gesture-detector.js?v=2"></script>
+    <script src="gesture-handler.js?v=2"></script>
   </head>
 
   <body style="margin: 0px; overflow: hidden">
@@ -53,8 +64,15 @@
       AFRAME.registerComponent("distance1", {
         init: function () {
           /*   this.box = document.querySelector("a-box"); */
-          this.image = document.querySelector("a-image");
+          image1 = document.querySelector("#imageA");
+          image2 = document.querySelector("#imageB");
+          image3 = document.querySelector("#imageC");
+          image4 = document.querySelector("#imageD");
           /* this.text = document.querySelector("a-text"); */
+
+          let imagePosition;
+
+          numberImage = 0;
         },
         tick: function () {
           let position = new THREE.Vector3();
@@ -65,7 +83,19 @@
 
           /*  let boxPosition = this.box.object3D.getWorldPosition(position2); */
 
-          let imagePosition = this.image.object3D.getWorldPosition(position2);
+          if (numberImage == 0) {
+            imagePosition = image1.object3D.getWorldPosition(position2);
+            console.log("Se detecto marcador 1");
+          } else if (numberImage == 1) {
+            imagePosition = image2.object3D.getWorldPosition(position2);
+            console.log("Se detecto marcador 2");
+          } else if (numberImage == 2) {
+            imagePosition = image3.object3D.getWorldPosition(position2);
+            console.log("Se detecto marcador 3");
+          } else if (numberImage == 3) {
+            imagePosition = image4.object3D.getWorldPosition(position2);
+            console.log("Se detecto marcador 4");
+          }
 
           let distance2 = camPosition.distanceTo(imagePosition);
 
@@ -80,8 +110,12 @@
           /*  this.text.setAttribute("value", distanceNormalized); */
 
           $("body").get(0).style.setProperty("--opacity", distanceNormalized);
+        },
 
-          console.log(camPosition);
+        updateImage: function (numImg) {
+          numberImage = numImg;
+
+          console.log("Se recibio bien el marcador" + numImg);
         },
       });
     </script>
@@ -91,25 +125,66 @@
         init: function () {
           var marker = this.el;
 
+          var camera = document.querySelector("#camera");
+
           var image1 = document.querySelector("#imageA");
           var image2 = document.querySelector("#imageB");
 
           var markerId = marker.id;
 
+          var sonido1 = document.querySelector("#portal");
+
+          var sonido2 = document.querySelector("#portal2");
+
+          rendererComp = camera.components["distance1"];
+
           marker.addEventListener("markerFound", function () {
             if (markerId == "markerA") {
-              // image1.setAttribute('position', { x: 2, y: 2, z: 3 });
+              if (!rendererComp) return;
+
+              rendererComp.updateImage(0);
+
+              sonido1.components.sound.playSound();
+
               markerFound("markerA");
             }
 
             if (markerId == "markerB") {
-              // image2.setAttribute('position', { x: 2, y: 2, z: 3 });
+              if (!rendererComp) return;
+
+              rendererComp.updateImage(1);
+
+              //sonido2.components.sound.playSound();
+
               markerFound("markerB");
+            }
+
+            if (markerId == "markerC") {
+              if (!rendererComp) return;
+
+              rendererComp.updateImage(2);
+              markerFound("markerC");
+            }
+
+            if (markerId == "markerD") {
+              if (!rendererComp) return;
+
+              rendererComp.updateImage(3);
+              markerFound("markerD");
             }
           });
 
           marker.addEventListener("markerLost", function () {
-            var markerId = marker.id;
+            if (markerId == "markerA") {
+              sonido1.components.sound.stopSound();
+            }
+
+            if (markerId == "markerB") {
+              //sonido2.components.sound.stopSound();
+            }
+
+            if (markerId == "markerC") {
+            }
           });
         },
       });
@@ -127,12 +202,12 @@
     <div id="searchingText" class="searchTxt show">
       <div id="col-img">
         <!-- Icono del sello
-        <img
-          id="img1"
-          src="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/Sello-leon.png?v=1697443233838"
-          alt=""
-        />
-        -->
+    <img
+      id="img1"
+      src="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/Sello-leon.png?v=1697443233838"
+      alt=""
+    />
+    -->
       </div>
 
       <div class="subcol1">
@@ -161,19 +236,12 @@
           preload="auto"
           crossorigin="anonymous"
         ></audio>
-
-        <audio
-          id="portal-sound2"
-          src="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/Portal-sound1.mp3?v=1696892203367"
-          preload="auto"
-          crossorigin="anonymous"
-        ></audio>
       </a-assets>
 
       <a-marker
         type="pattern"
         preset="custom"
-        url="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/Leon-blanco-6cm.patt?v=1697987080881"
+        url="https://cdn.glitch.global/7578761b-14e7-4f95-9267-118d39ae8cca/Cabeza-Blanco.patt?v=1698851175341"
         raycaster="objects: .clickable"
         emitevents="true"
         cursor="fuse: false; rayOrigin: mouse;"
@@ -192,26 +260,26 @@
         <a-entity
           id="portal"
           sound="src: #portal-sound;
-                       autoplay: false;
-                       loop: true; 
-                       refDistance: 1;
-                       rolloffFactor: 3;
-                       maxDistance: 30;
-                       volume: 2;
-                       distanceModel: linear"
+                   autoplay: false;
+                   loop: true; 
+                   refDistance: 1;
+                   rolloffFactor: 4;
+                   maxDistance: 20;
+                   volume: 1;
+                   distanceModel: linear"
           crossorigin="anonymous"
         ></a-entity>
 
         <!-- 
-       <a-text position="0 1 -1" rotation="-90 0 0" color="white"></a-text>
-        <a-box position="-1 0.5 -1" rotation="-90 0 0" color="white"></a-box>
-        -->
+   <a-text position="0 1 -1" rotation="-90 0 0" color="white"></a-text>
+    <a-box position="-1 0.5 -1" rotation="-90 0 0" color="white"></a-box>
+    -->
       </a-marker>
 
       <a-marker
         type="pattern"
         preset="custom"
-        url="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/Leon-Negro-6cm.patt?v=1697987083277"
+        url="https://cdn.glitch.global/7578761b-14e7-4f95-9267-118d39ae8cca/Cola-Blanco.patt?v=1698851178910"
         raycaster="objects: .clickable"
         emitevents="true"
         cursor="fuse: false; rayOrigin: mouse;"
@@ -231,7 +299,7 @@
       <a-marker
         type="pattern"
         preset="custom"
-        url="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/Medio-Leon-negro.patt?v=1698202988271"
+        url="https://cdn.glitch.global/7578761b-14e7-4f95-9267-118d39ae8cca/Garra-Blanco.patt?v=1698851182119"
         raycaster="objects: .clickable"
         emitevents="true"
         cursor="fuse: false; rayOrigin: mouse;"
@@ -251,7 +319,7 @@
       <a-marker
         type="pattern"
         preset="custom"
-        url="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/Medio-Leon-Blanco.patt?v=1698203160072"
+        url="https://cdn.glitch.global/7578761b-14e7-4f95-9267-118d39ae8cca/Leon-Nuevo-Blanco.patt?v=1698851205322"
         raycaster="objects: .clickable"
         emitevents="true"
         cursor="fuse: false; rayOrigin: mouse;"
@@ -268,7 +336,7 @@
         ></a-image>
       </a-marker>
 
-      <a-entity id="camera" camera></a-entity>
+      <a-entity id="camera" camera distance1></a-entity>
     </a-scene>
   </body>
 </html>
