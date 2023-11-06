@@ -60,8 +60,12 @@ body {
   height: 100%;
 
   z-index: 2;
-
+  
+  /*
   opacity: var(--opacity) !important;
+  */
+  
+  opacity: clamp(0, var(--opacity), 0.5) !important;
 
   pointer-events: none;
 }
@@ -187,5 +191,6 @@ body {
   color: white;
  font-size: 4vw;
 }
+
 
   

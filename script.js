@@ -80,6 +80,8 @@ function endCountdown() {
 
   var lore1 = $("#lore-1");
 
+  var lore2 = $("#lore-2");
+
   document.getElementById("contador").innerHTML = "Llegó la hora";
 
   document.getElementById("tit1").innerHTML = "Al fin";
@@ -88,23 +90,37 @@ function endCountdown() {
 
   boton.removeClass("hide");
   candado.removeClass("show");
-  lore1.removeClass("redacted-2");
 
   boton.addClass("show");
   candado.addClass("hide");
-  
+
   /*
+
+  $(".phase-1").css("text-decoration", "none");
+
+  $(".phase-1").css("font-size", "3.5vw");
+
+  $(".phase-1").css("filter", "none");
+
+  $(".phase-1").css("margin-right", "0px");
+
+  $(".phase-2").css("text-decoration", "none");
+
+  $(".phase-2").css("font-size", "3.5vw");
+
+  $(".phase-2").css("filter", "none");
+
+  $(".phase-2").css("margin-right", "0px");
   
-  $(".redacted").css("text-decoration", "none");
+  $(".phase-3").css("text-decoration", "none");
 
-    $(".redacted").css("font-size", "3.5vw");
+  $(".phase-3").css("font-size", "3.5vw");
 
-    $(".redacted").css("filter", "none");
+  $(".phase-3").css("filter", "none");
 
-    $(".redacted").css("margin-right", "0px");
-    
-    */
+  $(".phase-3").css("margin-right", "0px");
   
+  */
 
   console.log("se termino wey");
 }
@@ -150,42 +166,22 @@ function showFoundMarker() {
 
   if (mark1Found != null) {
     punto1.style.webkitFilter = "grayscale(80%) brightness(50%)";
-
-    $(".redacted").css("text-decoration", "none");
-
-    $(".redacted").css("font-size", "3.5vw");
-
-    $(".redacted").css("filter", "none");
-
-    $(".redacted").css("margin-right", "0px");
-
-    console.log("LOcuron se encontro el marcador" + " " + mark1Found);
-  } else {
-    console.log("Sadgi no se encontro el marcador 1");
   }
 
   if (mark2Found != null) {
     punto2.style.webkitFilter = "grayscale(80%) brightness(40%)";
-
-    console.log("LOcuron se encontro el marcador" + " " + mark2Found);
-  } else {
-    console.log("Sadgi no se encontro el marcador 2");
   }
 
   if (mark3Found != null) {
     punto3.style.webkitFilter = "grayscale(80%) brightness(40%)";
 
     console.log("LOcuron se encontro el marcador" + " " + mark3Found);
-  } else {
-    console.log("Sadgi no se encontro el marcador 3");
   }
 
   if (mark4Found != null) {
     punto4.style.webkitFilter = "grayscale(80%) brightness(40%)";
 
     console.log("LOcuron se encontro el marcador" + " " + mark4Found);
-  } else {
-    console.log("Sadgi no se encontro el marcador 4");
   }
 }
 
@@ -194,3 +190,70 @@ $(document).ready(function () {
     showFoundMarker();
   });
 });
+
+var updateFoundMarkers = function () {
+  checkFoundMarkers();
+};
+var timer = setInterval(updateFoundMarkers, 2000);
+var numX = 0;
+//clearInterval(timer);
+
+function checkFoundMarkers() {
+  var mark1Found = localStorage.getItem("marker1");
+  var mark2Found = localStorage.getItem("marker2");
+  var mark3Found = localStorage.getItem("marker3");
+  var mark4Found = localStorage.getItem("marker4");
+
+  if (mark1Found != null) {
+    $("#lore-1").removeClass("redacted-2");
+    $("#lore-2").removeClass("redacted-2");
+
+    console.log("LOcuron se encontro el marcador" + " " + mark1Found);
+  } else {
+    console.log("Sadgi no se encontro el marcador 1");
+  }
+
+  if (mark2Found != null) {
+    $(".phase-1").css("text-decoration", "none");
+
+    $(".phase-1").css("font-size", "3.5vw");
+
+    $(".phase-1").css("filter", "none");
+
+    $(".phase-1").css("margin-right", "0px");
+
+    console.log("LOcuron se encontro el marcador" + " " + mark2Found);
+  } else {
+    console.log("Sadgi no se encontro el marcador 2");
+  }
+
+  if (mark3Found != null) {
+    $(".phase-2").css("text-decoration", "none");
+
+    $(".phase-2").css("font-size", "3.5vw");
+
+    $(".phase-2").css("filter", "none");
+
+    $(".phase-2").css("margin-right", "0px");
+    console.log("LOcuron se encontro el marcador" + " " + mark3Found);
+  } else {
+    console.log("Sadgi no se encontro el marcador 3");
+  }
+
+  if (mark4Found != null) {
+    $(".phase-3").css("text-decoration", "none");
+
+    $(".phase-3").css("font-size", "3.5vw");
+
+    $(".phase-3").css("filter", "none");
+
+    $(".phase-3").css("margin-right", "0px");
+    console.log("LOcuron se encontro el marcador" + " " + mark4Found);
+  } else {
+    console.log("Sadgi no se encontro el marcador 4");
+  }
+  
+  numX++;
+
+  console.log("Numero de veces ejecutado: " + numX);
+}

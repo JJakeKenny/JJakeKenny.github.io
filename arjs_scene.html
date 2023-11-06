@@ -21,18 +21,7 @@
       name="viewport"
       content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="https://cdn.glitch.global/7578761b-14e7-4f95-9267-118d39ae8cca/favicon-32x32.png?v=1698931100111"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="https://cdn.glitch.global/7578761b-14e7-4f95-9267-118d39ae8cca/favicon-16x16.png?v=1698931099658"
-    />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
 
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
@@ -42,9 +31,9 @@
 
     <script src="jquery.dad.min.js"></script>
 
-    <link rel="stylesheet" href="style-ar.css?v=2" />
+    <link rel="stylesheet" href="style-ar.css?v=3" />
 
-    <script src="script-ar.js?v=2" type="text/javascript"></script>
+    <script src="script-ar.js?v=3" type="text/javascript"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -55,8 +44,8 @@
       rel="stylesheet"
     />
 
-    <script src="gesture-detector.js?v=2"></script>
-    <script src="gesture-handler.js?v=2"></script>
+    <script src="gesture-detector.js?v=3"></script>
+    <script src="gesture-handler.js?v=3"></script>
   </head>
 
   <body style="margin: 0px; overflow: hidden">
@@ -99,7 +88,7 @@
 
           let distance2 = camPosition.distanceTo(imagePosition);
 
-          let distanceNormalized = ((distance2 - 20) / (4 - 20)) * 2 - 1;
+          let distanceNormalized = ((distance2 - 10) / (4 - 10)) * 2 - 1;
 
           if (distanceNormalized > 1) {
             distanceNormalized = 1;
