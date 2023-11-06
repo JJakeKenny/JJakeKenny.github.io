@@ -65,7 +65,7 @@ body {
   opacity: var(--opacity) !important;
   */
   
-  opacity: clamp(0, var(--opacity), 0.5) !important;
+  opacity: clamp(0, var(--opacity), 0.3) !important;
 
   pointer-events: none;
 }
