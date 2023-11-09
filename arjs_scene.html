@@ -31,9 +31,9 @@
 
     <script src="jquery.dad.min.js"></script>
 
-    <link rel="stylesheet" href="style-ar.css?v=4" />
+    <link rel="stylesheet" href="style-ar.css?v=5" />
 
-    <script src="script-ar.js?v=3" type="text/javascript"></script>
+    <script src="script-ar.js?v=4" type="text/javascript"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -44,8 +44,8 @@
       rel="stylesheet"
     />
 
-    <script src="gesture-detector.js?v=3"></script>
-    <script src="gesture-handler.js?v=3"></script>
+    <script src="gesture-detector.js?v=4"></script>
+    <script src="gesture-handler.js?v=4"></script>
   </head>
 
   <body style="margin: 0px; overflow: hidden">
@@ -72,33 +72,35 @@
 
           /*  let boxPosition = this.box.object3D.getWorldPosition(position2); */
 
-          if (numberImage == 0) {
-            imagePosition = image1.object3D.getWorldPosition(position2);
-            console.log("Se detecto marcador 1");
-          } else if (numberImage == 1) {
-            imagePosition = image2.object3D.getWorldPosition(position2);
-            console.log("Se detecto marcador 2");
-          } else if (numberImage == 2) {
-            imagePosition = image3.object3D.getWorldPosition(position2);
-            console.log("Se detecto marcador 3");
-          } else if (numberImage == 3) {
-            imagePosition = image4.object3D.getWorldPosition(position2);
-            console.log("Se detecto marcador 4");
-          }
+          imagePosition = image4.object3D.getWorldPosition(position2);
 
           let distance2 = camPosition.distanceTo(imagePosition);
 
           let distanceNormalized = ((distance2 - 10) / (4 - 10)) * 2 - 1;
+
+          if (numberImage == 0) {
+            //imagePosition = image1.object3D.getWorldPosition(position2);
+            $("body").get(0).style.setProperty("--opacity", 0);
+            //console.log("Se detecto marcador 1");
+          } else if (numberImage == 1) {
+            //imagePosition = image2.object3D.getWorldPosition(position2);
+            $("body").get(0).style.setProperty("--opacity", 0);
+            //console.log("Se detecto marcador 2");
+          } else if (numberImage == 2) {
+            //imagePosition = image3.object3D.getWorldPosition(position2);
+            $("body").get(0).style.setProperty("--opacity", 0);
+            //console.log("Se detecto marcador 3");
+          } else if (numberImage == 3) {
+            //imagePosition = image4.object3D.getWorldPosition(position2);
+            $("body").get(0).style.setProperty("--opacity", distanceNormalized);
+            //console.log("Se detecto marcador 4");
+          }
 
           if (distanceNormalized > 1) {
             distanceNormalized = 1;
           } else if (distanceNormalized < 0) {
             distanceNormalized = 0;
           }
-
-          /*  this.text.setAttribute("value", distanceNormalized); */
-
-          $("body").get(0).style.setProperty("--opacity", distanceNormalized);
         },
 
         updateImage: function (numImg) {
@@ -133,7 +135,7 @@
 
               rendererComp.updateImage(0);
 
-              sonido1.components.sound.playSound();
+              //sonido1.components.sound.playSound();
 
               markerFound("markerA");
             }
@@ -158,6 +160,8 @@
             if (markerId == "markerD") {
               if (!rendererComp) return;
 
+              sonido1.components.sound.playSound();
+
               rendererComp.updateImage(3);
               markerFound("markerD");
             }
@@ -165,7 +169,7 @@
 
           marker.addEventListener("markerLost", function () {
             if (markerId == "markerA") {
-              sonido1.components.sound.stopSound();
+              //sonido1.components.sound.stopSound();
             }
 
             if (markerId == "markerB") {
@@ -173,6 +177,10 @@
             }
 
             if (markerId == "markerC") {
+            }
+
+            if (markerId == "markerD") {
+              sonido1.components.sound.stopSound();
             }
           });
         },
@@ -189,22 +197,12 @@
     </div>
 
     <div id="searchingText" class="searchTxt show">
-      <div id="col-img">
-        <!-- Icono del sello
-    <img
-      id="img1"
-      src="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/Sello-leon.png?v=1697443233838"
-      alt=""
-    />
-    -->
-      </div>
+      <div id="col-img"></div>
 
       <div class="subcol1">
         <h1>Buscando sello...</h1>
 
         <!-- Prueba de guardado del marcador detectado  -->
-
-        <h1 id="text"></h1>
       </div>
     </div>
 
@@ -238,31 +236,13 @@
         registerevents
       >
         <a-image
-          scale="1.4 1.4 1"
+          scale="1.5 1.5 1"
           rotation="-90 0 0"
-          src="https://cdn.glitch.global/7578761b-14e7-4f95-9267-118d39ae8cca/Lore-1.jpeg?v=1699284765594"
+          src="https://cdn.glitch.global/7578761b-14e7-4f95-9267-118d39ae8cca/Leon-Plano-Cripta-1.jpg?v=1699472160915"
           class="clickable"
           gesture-handler
           id="imageA"
         ></a-image>
-
-        <a-entity
-          id="portal"
-          sound="src: #portal-sound;
-                   autoplay: false;
-                   loop: true; 
-                   refDistance: 1;
-                   rolloffFactor: 4;
-                   maxDistance: 20;
-                   volume: 1;
-                   distanceModel: linear"
-          crossorigin="anonymous"
-        ></a-entity>
-
-        <!-- 
-   <a-text position="0 1 -1" rotation="-90 0 0" color="white"></a-text>
-    <a-box position="-1 0.5 -1" rotation="-90 0 0" color="white"></a-box>
-    -->
       </a-marker>
 
       <a-marker
@@ -278,7 +258,7 @@
         <a-image
           scale="1.4 1.4 1"
           rotation="-90 0 0"
-          src="https://cdn.glitch.global/7c660321-8a8e-4ec9-aefa-a8db42fb5efb/db52844d0de9babf636ae21f3c0bb48a.jpg?v=1695923585728"
+          src="https://cdn.glitch.global/7578761b-14e7-4f95-9267-118d39ae8cca/Leon-Cripta-1.jpg?v=1699472157629"
           class="clickable"
           gesture-handler
           id="imageB"
@@ -296,9 +276,9 @@
         registerevents
       >
         <a-image
-          scale="1.4 1.4 1"
+          scale="2 2 1"
           rotation="-90 0 0"
-          src="https://cdn.glitch.global/7c660321-8a8e-4ec9-aefa-a8db42fb5efb/Screenshot_6.png?v=1695923586610"
+          src="https://cdn.glitch.global/7578761b-14e7-4f95-9267-118d39ae8cca/Leon-Plano.jpg?v=1699472158584"
           class="clickable"
           gesture-handler
           id="imageC"
@@ -316,13 +296,26 @@
         registerevents
       >
         <a-image
-          scale="1.4 1.4 1"
+          scale="1.5 1.5 1"
           rotation="-90 0 0"
-          src="https://cdn.glitch.global/749bf003-91be-414b-bbef-660c5bfc6387/SCP-2117.png?v=1698203641686"
+          src="https://cdn.glitch.global/7578761b-14e7-4f95-9267-118d39ae8cca/Leon-Portal-1.jpg?v=1699472162284"
           class="clickable"
           gesture-handler
           id="imageD"
         ></a-image>
+
+        <a-entity
+          id="portal"
+          sound="src: #portal-sound;
+                   autoplay: false;
+                   loop: true; 
+                   refDistance: 1;
+                   rolloffFactor: 5;
+                   maxDistance: 15;
+                   volume: 1;
+                   distanceModel: linear"
+          crossorigin="anonymous"
+        ></a-entity>
       </a-marker>
 
       <a-entity id="camera" camera distance1></a-entity>

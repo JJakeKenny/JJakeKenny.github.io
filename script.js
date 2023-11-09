@@ -55,18 +55,6 @@ var x = setInterval(function () {
 
   document.getElementById("tit2").innerHTML = "Se abre el telón";
 
-  /*
-  // If the count down is finished, write some text
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("contador").innerHTML = "Se abrió el telón";
-    
-    boton.removeClass("hide");
-    
-    boton.addClass("show");
-  }
-  */
-
   if (distance < 0) {
     clearInterval(x);
     endCountdown();
@@ -95,7 +83,9 @@ function endCountdown() {
   candado.addClass("hide");
 
   /*
-
+  $("#lore-1").removeClass("redacted-2");
+  $("#lore-2").removeClass("redacted-2");
+  
   $(".phase-1").css("text-decoration", "none");
 
   $(".phase-1").css("font-size", "3.5vw");
@@ -111,6 +101,7 @@ function endCountdown() {
   $(".phase-2").css("filter", "none");
 
   $(".phase-2").css("margin-right", "0px");
+
   
   $(".phase-3").css("text-decoration", "none");
 
@@ -119,7 +110,6 @@ function endCountdown() {
   $(".phase-3").css("filter", "none");
 
   $(".phase-3").css("margin-right", "0px");
-  
   */
 
   console.log("se termino wey");
@@ -252,7 +242,7 @@ function checkFoundMarkers() {
   } else {
     console.log("Sadgi no se encontro el marcador 4");
   }
-  
+
   numX++;
 
   console.log("Numero de veces ejecutado: " + numX);
