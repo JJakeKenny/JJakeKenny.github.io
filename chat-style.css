@@ -45,24 +45,6 @@ body {
 }
 */
 
-.text-box{
-  
-  color: #ffa80080;
-
-  font-family: "Average", serif;
-
-  font-size: 1.5vw;
-
-  margin: 16px 0;
-
-  padding: 4px 10px;
-
-  border-radius: 12px;
-
-  border: solid 1.5px #ffaa0085;
-  
-}
-
 .message {
   color: #ffa800;
 
