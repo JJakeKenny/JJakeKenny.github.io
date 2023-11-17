@@ -82,36 +82,6 @@ function endCountdown() {
   boton.addClass("show");
   candado.addClass("hide");
 
-  /*
-  $("#lore-1").removeClass("redacted-2");
-  $("#lore-2").removeClass("redacted-2");
-  
-  $(".phase-1").css("text-decoration", "none");
-
-  $(".phase-1").css("font-size", "3.5vw");
-
-  $(".phase-1").css("filter", "none");
-
-  $(".phase-1").css("margin-right", "0px");
-
-  $(".phase-2").css("text-decoration", "none");
-
-  $(".phase-2").css("font-size", "3.5vw");
-
-  $(".phase-2").css("filter", "none");
-
-  $(".phase-2").css("margin-right", "0px");
-
-  
-  $(".phase-3").css("text-decoration", "none");
-
-  $(".phase-3").css("font-size", "3.5vw");
-
-  $(".phase-3").css("filter", "none");
-
-  $(".phase-3").css("margin-right", "0px");
-  */
-
   console.log("se termino wey");
 }
 
@@ -180,6 +150,16 @@ $(document).ready(function () {
     showFoundMarker();
   });
 });
+
+$(document).ready(function () {
+  $("#secret-button").click(function () {
+    openChat();
+  });
+});
+
+function openChat() {
+   window.location.href = "chat.html";
+}
 
 var updateFoundMarkers = function () {
   checkFoundMarkers();

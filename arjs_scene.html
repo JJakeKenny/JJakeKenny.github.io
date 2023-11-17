@@ -31,9 +31,9 @@
 
     <script src="jquery.dad.min.js"></script>
 
-    <link rel="stylesheet" href="style-ar.css?v=5" />
+    <link rel="stylesheet" href="style-ar.css?v=6" />
 
-    <script src="script-ar.js?v=4" type="text/javascript"></script>
+    <script src="script-ar.js?v=5" type="text/javascript"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -44,8 +44,8 @@
       rel="stylesheet"
     />
 
-    <script src="gesture-detector.js?v=4"></script>
-    <script src="gesture-handler.js?v=4"></script>
+    <script src="gesture-detector.js?v=5"></script>
+    <script src="gesture-handler.js?v=5"></script>
   </head>
 
   <body style="margin: 0px; overflow: hidden">
@@ -76,7 +76,7 @@
 
           let distance2 = camPosition.distanceTo(imagePosition);
 
-          let distanceNormalized = ((distance2 - 10) / (4 - 10)) * 2 - 1;
+          let distanceNormalized = ((distance2 - 15) / (4 - 15)) * 2 - 1;
 
           if (numberImage == 0) {
             //imagePosition = image1.object3D.getWorldPosition(position2);
@@ -125,8 +125,6 @@
 
           var sonido1 = document.querySelector("#portal");
 
-          var sonido2 = document.querySelector("#portal2");
-
           rendererComp = camera.components["distance1"];
 
           marker.addEventListener("markerFound", function () {
@@ -144,8 +142,6 @@
               if (!rendererComp) return;
 
               rendererComp.updateImage(1);
-
-              //sonido2.components.sound.playSound();
 
               markerFound("markerB");
             }
@@ -173,7 +169,6 @@
             }
 
             if (markerId == "markerB") {
-              //sonido2.components.sound.stopSound();
             }
 
             if (markerId == "markerC") {

@@ -11,18 +11,16 @@ AFRAME.registerComponent("gesture-handler", {
   },
 
   init: function () {
-
-    
     const elemento = $("#searchingText");
-    
+
     const elemento2 = $("#boton1");
-    
+
     const elemento3 = $("#scene");
-    
-    const glitch = $("#glitch"); 
-    
+
+    const glitch = $("#glitch");
+
     //var entidad1 = document.querySelector('[sound]');
-    
+
     this.handleScale = this.handleScale.bind(this);
     this.handleRotation = this.handleRotation.bind(this);
 
@@ -32,39 +30,38 @@ AFRAME.registerComponent("gesture-handler", {
 
     this.el.sceneEl.addEventListener("markerFound", (e) => {
       this.isVisible = true;
-      
-      document.querySelector("#camera").setAttribute('distance1', '');
-      
-      elemento.removeClass("show")
-      elemento2.removeClass("hide")
-      elemento3.removeClass("non-clickable")
-      
-      glitch.addClass("show")
-      
+
+      document.querySelector("#camera").setAttribute("distance1", "");
+
+      elemento.removeClass("show");
+      elemento2.removeClass("hide");
+      elemento3.removeClass("non-clickable");
+
+      glitch.addClass("show");
+
       //entidad1.components.sound.playSound();
-      
-      elemento.addClass("hide")
-      elemento2.addClass("show")
-      elemento3.addClass("clickable")
-      glitch.removeClass("hide")
-      
+
+      elemento.addClass("hide");
+      elemento2.addClass("show");
+      elemento3.addClass("clickable");
+      glitch.removeClass("hide");
     });
 
     this.el.sceneEl.addEventListener("markerLost", (e) => {
       this.isVisible = false;
-      
-      elemento.removeClass("hide")
-      elemento2.removeClass("show")
-      elemento3.removeClass("clickable")
-      
-      glitch.removeClass("show")
-      
+
+      elemento.removeClass("hide");
+      elemento2.removeClass("show");
+      elemento3.removeClass("clickable");
+
+      glitch.removeClass("show");
+
       //entidad1.components.sound.stopSound();
-      
-      elemento.addClass("show")
-      elemento2.addClass("hide")
-      elemento3.addClass("non-clickable")
-      glitch.addClass("hide")
+
+      elemento.addClass("show");
+      elemento2.addClass("hide");
+      elemento3.addClass("non-clickable");
+      glitch.addClass("hide");
     });
   },
 
