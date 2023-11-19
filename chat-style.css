@@ -274,7 +274,6 @@ a {
   align-items: center;
 
   margin: 40px 0;
-
 }
 
 button {
@@ -294,12 +293,12 @@ button {
   font-family: "Average", serif;
   font-weight: bold;
 
-  display:flex;
+  display: flex;
   width: 10%;
   height: 8vw;
-  
+
   max-width: 60px;
-  
+
   max-height: 60px;
 
   align-items: center;
@@ -316,24 +315,22 @@ button {
   cursor: pointer !important;
 
   padding: 1%;
-
 }
 
-h1{
+h1 {
   font-size: min(3vw, 18px) !important;
 }
 
-.text-message{
-  
+.text-message {
   width: 90%;
   min-width: 2px;
-  
+
   max-height: 50px;
-  
-  display:flex;
-  
+
+  display: flex;
+
   align-items: center;
-  
+
   color: #ffa80080;
 
   font-family: "Average", serif;
@@ -341,12 +338,14 @@ h1{
   font-size: 1.5vw !important;
 
   padding: 4px 10px;
-  
+
   margin-right: 2%;
 
   border-radius: 12px;
 
   border: solid 1.5px #ffaa0085;
+
+  cursor: text;
 }
 
 #send-icon {
@@ -367,6 +366,16 @@ h1{
   }
 
   .first-letter {
+    font-size: 26px;
+  }
+
+  .redacted {
+    font-size: 24px;
+
+    text-decoration-thickness: 30px;
+  }
+
+  a {
     font-size: 26px;
   }
 }
